@@ -1,0 +1,16 @@
+<h1>Get your Cedars !</h1>
+
+Hi! You've just helped to reforest Lebanon with Cedars. Claim your CEDAR COIN as proof of your participation.<br/>
+• http://localhost:8000.com/claim.html (development)<br/>
+• https://cedar.genblue.io/claim.html (deference design)<br/><br/>
+On the pages above, you will be asked to enter this claim code: <b>{CLAIM_CODE}</b><br/>
+
+<br/>
+<div>
+	<h2>How to create an ethereum address</h2>
+	<p>MetaMask is a browser extension that allows web applications to interact with the Ethereum blockchain. For users, it works as an Ethereum wallet, allowing them to store and send any standard Ethereum-compatible tokens (so-called ERC-20 tokens).</p>
+	<p>Metamask includes a secure sign-on process, providing a user interface to manage your identities on different sites and sign blockchain transactions. It is easy to use on almost every browser.</p>
+	<p>To use MetaMask, you will need to install it in your browser. You can choose between Google Chrome, Mozilla Firefox, Opera or Brave. In our case, we will be using Google Chrome browser. As a first step we need to go to the Chrome extension web store, and download the MetaMask extension. Once you are at the Chrome web store, just click on “Add to Chrome ” to add the MetaMask extension into your browser. Then click on “Add Extension” and immediately you will see the icon of MetaMask on the right part of the navbar navigation of your Chrome browser.</p>
+	<p>When MetaMask is installed in your browser, you will see an icon at the same level of the address bar on your browser. You should select the icon and proceed with login:</p>
+	<p>Before Logging in you should accept Terms of use, Privacy notice and Phishing Warning. Scroll inside the panel in order to have the accept button available. When you accept each one, MetaMask login will appear.</p>
+</div>

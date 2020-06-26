@@ -1,0 +1,77 @@
+name: Go
+on: [push]
+jobs:
+
+  build-deploy:
+    name: Test, build and deploy
+    runs-on: ubuntu-18.04
+    env:
+      USERNAME: ${{ secrets.CEDRUS_DOCKER_USERNAME }}
+      PASSWORD: ${{ secrets.CEDRUS_DOCKER_PASSWORD }}
+      REGISTRY: ${{ secrets.CEDRUS_DOCKER_REGISTRY }}
+      CF_DOCKER_PASSWORD: ${{ secrets.CEDRUS_DOCKER_PASSWORD }}
+      CF_USERNAME: ${{ secrets.CF_USERNAME }}
+      CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
+      MAINNET_MINTER_KEYSTORE: ${{ secrets.MAINNET_MINTER_KEYSTORE }}
+      MAINNET_MINTER_KEYSTORE_PASSWORD: ${{ secrets.MAINNET_MINTER_KEYSTORE_PASSWORD }}
+    steps:
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v1.4.2
+      with:
+        node-version: 11.14.0
+  
+    - name: Set up Go 1.13
+      uses: actions/setup-go@v1
+      with:
+        go-version: 1.13
+      id: go
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v1
+      
+    - name: Install Cedar contracts dependencies
+      run: pwd && ls && cd contracts && npm install
+  
+    - name: Test Cedar contract
+      run: cd contracts && npm test
+
+    - name: Get dependencies
+      run: |
+        make deps
+        if [ -f Gopkg.toml ]; then
+            curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+            dep ensure
+        fi
+
+    - name: Build
+      run: make build
+    
+    - name: setup-docker
+      uses: docker-practice/actions-setup-docker@0.0.1
+    
+    - name: Test
+      run: make test-ci
+
+    - name: Build
+      run: make build-unix
+
+    - name: Build docker images
+      run: >
+        if [[ -z "${MAINNET_MINTER_KEYSTORE}" ]]; then echo "Using Rinkeby minter keystore"; else echo $MAINNET_MINTER_KEYSTORE | tr -d '\n' > ${GITHUB_WORKSPACE}/test/keystore_wallet_test.json; echo "Using mainnet minter keystore"; fi;
+        if [[ -z "${MAINNET_MINTER_KEYSTORE_PASSWORD}" ]]; then echo "Using Rinkeby minter keystore password"; else echo $MAINNET_MINTER_KEYSTORE_PASSWORD | tr -d '\n' > ${GITHUB_WORKSPACE}/test/password; fi;
+        make docker-images
+
+    - name: Tag docker images
+      run: make docker-tag
+
+    - name: Push docker images
+      run: make docker-push
+
+    - name: Deploy CF services
+      run: >
+        curl -L "https://packages.cloudfoundry.org/stable?release=linux64-binary&source=github" | tar -zx
+        && ./cf api https://api.run.pivotal.io
+        && ./cf login -u ${CF_USERNAME} -p ${CF_PASSWORD} -s cedar
+        && ./cf push cedrusservice --docker-image ${REGISTRY}:cedrusservice-dev --docker-username ${USERNAME}
+        && (./cf push emailservice --docker-image ${REGISTRY}:emailservice-dev --docker-username ${USERNAME} || true)
+        && ./cf push sethservice --docker-image ${REGISTRY}:sethservice-dev --docker-username ${USERNAME}

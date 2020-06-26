@@ -1,0 +1,81 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "For managing blockchain transfers",
+        "title": "Seth service API",
+        "contact": {
+            "name": "API Support",
+            "email": "email@ded.fr"
+        },
+        "license": {},
+        "version": "v1"
+    },
+    "basePath": "/api/v1",
+    "paths": {
+        "/accounts_balance": {
+            "get": {
+                "summary": "Get balance of the ethereum accounts",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.AccountBalance"
+                        }
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "summary": "Get health of the service",
+                "responses": {
+                    "200": {}
+                }
+            }
+        },
+        "/transfer": {
+            "post": {
+                "summary": "Transfer Cedar coins",
+                "parameters": [
+                    {
+                        "description": "Transfer",
+                        "name": "transfer",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/inputs.NewTransfer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {}
+                }
+            }
+        }
+    },
+    "definitions": {
+        "inputs.NewTransfer": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "claim-code": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.AccountBalance": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "balance": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

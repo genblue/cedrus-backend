@@ -1,0 +1,58 @@
+version: "2"
+services:
+  mongo:
+    image: mongo:3.4.23
+    ports:
+      - "27017:27017"
+  cedrusservice:
+    build:
+      context: .
+      dockerfile: build/package/cedrusservice.Dockerfile
+    ports:
+      - "8000:8000"
+    links:
+      - mongo
+    environment:
+      API_PORT: 8000
+      DB_URI: mongodb://mongo:27017
+      SETH_SERVICE_URL: http://sethservice:8002/api/v1/transfer
+      DB_NAME: cedrus
+    depends_on:
+      - mongo
+  emailservice:
+    build:
+      context: .
+      dockerfile: build/package/emailservice.Dockerfile
+    links:
+      - mongo
+    env_file:
+      - .env # For SENDGRID_API_KEY
+    environment:
+      DB_URI: mongodb://mongo:27017
+      DB_NAME: cedrus
+    depends_on:
+      - mongo
+  sethservice:
+    build:
+      context: .
+      dockerfile: build/package/sethservice-multistage.Dockerfile
+    links:
+      - mongo
+    env_file:
+      - .env # For SENDGRID_API_KEY
+    ports:
+      - "8002:8002"
+    environment:
+      API_PORT: 8002
+      DB_URI: mongodb://mongo:27017
+      DB_NAME: cedrus
+      TOKEN_CONTRACT_ADDRESS: "0xc00731961edfdffb684c72d72e27dfde9898c4f0"
+      KEYSTORE_WALLET_PASSWORD: ""
+      SETH_CHAIN: "rinkeby"
+      ETH_KEYSTORE: "/home/sethservice/secrets/ethereum"
+      ETH_PASSWORD: "/home/sethservice/secrets/ethereum/password"
+      ETH_FROM: "0x0569790EE0343DB5ce92e9D4E566544a3e752448"
+      ADMINISTRATOR_EMAIL: dummyaddres@gmail.com
+      ADMINISTRATOR_NAME: Rick The Admin
+    depends_on:
+      - mongo

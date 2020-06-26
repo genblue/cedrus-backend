@@ -1,0 +1,37 @@
+{
+  "name": "cedrus-contracts",
+  "version": "1.0.0",
+  "description": "Cedrus contracts",
+  "scripts": {
+    "compile": "./node_modules/.bin/oz compile contracts",
+    "ganache": "./node_modules/.bin/ganache-cli -l 90000000",
+    "deploy": "./node_modules/.bin/oz deploy",
+    "test": "npm run compile && ./node_modules/.bin/mocha --grep \"^CedrusToken\" --exit",
+    "integration-test": "sh test/E2E.Rinkeby.test.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/genblue-private/cedrus-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/genblue-private/cedrus-backend/issues"
+  },
+  "homepage": "https://github.com/genblue-private/cedrus-backend#readme",
+  "dependencies": {
+    "@openzeppelin/cli": "^2.8.2",
+    "@openzeppelin/contracts-ethereum-package": "^2.5.0",
+    "@openzeppelin/test-helpers": "^0.5.5",
+    "@openzeppelin/upgrades": "^2.8.0",
+    "esm": "^3.2.25",
+    "ganache-cli": "^6.9.1"
+  },
+  "devDependencies": {
+    "@openzeppelin/test-environment": "^0.1.4",
+    "@truffle/debug-utils": "^4.1.1",
+    "@truffle/hdwallet-provider": "^1.0.35",
+    "chai": "^4.2.0",
+    "mocha": "^7.1.2"
+  }
+}

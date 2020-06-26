@@ -1,0 +1,52 @@
+basePath: /api/v1
+definitions:
+  inputs.NewTransfer:
+    properties:
+      address:
+        type: string
+      claim-code:
+        type: string
+    type: object
+  model.AccountBalance:
+    properties:
+      address:
+        type: string
+      balance:
+        type: string
+    type: object
+info:
+  contact:
+    email: email@ded.fr
+    name: API Support
+  description: For managing blockchain transfers
+  license: {}
+  title: Seth service API
+  version: v1
+paths:
+  /accounts_balance:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.AccountBalance'
+      summary: Get balance of the ethereum accounts
+  /health:
+    get:
+      responses:
+        "200": {}
+      summary: Get health of the service
+  /transfer:
+    post:
+      parameters:
+      - description: Transfer
+        in: body
+        name: transfer
+        required: true
+        schema:
+          $ref: '#/definitions/inputs.NewTransfer'
+          type: object
+      responses:
+        "202": {}
+      summary: Transfer Cedar coins
+swagger: "2.0"

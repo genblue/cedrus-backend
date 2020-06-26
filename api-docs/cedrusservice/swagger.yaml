@@ -1,0 +1,122 @@
+basePath: /api/v1
+definitions:
+  inputs.NewClaim:
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+      treeCount:
+        type: integer
+    type: object
+  inputs.NewTransfer:
+    properties:
+      address:
+        type: string
+      claim-code:
+        type: string
+    type: object
+  model.Claim:
+    properties:
+      _id:
+        type: string
+      claimCode:
+        type: string
+      creationDate:
+        type: integer
+      email:
+        type: string
+      emailSent:
+        type: boolean
+      emailSentDate:
+        type: integer
+      memo:
+        type: string
+      name:
+        type: string
+      settlementDate:
+        type: integer
+      status:
+        type: integer
+      transferAddress:
+        type: string
+      treeCount:
+        type: integer
+    type: object
+  model.Health:
+    properties:
+      connectedToDb:
+        type: boolean
+    type: object
+info:
+  contact:
+    email: email@ded.fr
+    name: API Support
+  description: For managing claims
+  license: {}
+  title: Cedrus service API
+  version: v1
+paths:
+  /claims:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Claim'
+      summary: Get all Claims
+    post:
+      parameters:
+      - description: New Claim
+        in: body
+        name: new-claim
+        required: true
+        schema:
+          $ref: '#/definitions/inputs.NewClaim'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "201": {}
+        "400": {}
+      summary: Create a Claim
+  /claims/{id}:
+    get:
+      parameters:
+      - description: Claim ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Claim'
+      summary: Get a Claim
+  /health:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Health'
+      summary: get application health
+  /transfer:
+    post:
+      parameters:
+      - description: Transfer
+        in: body
+        name: transfer
+        required: true
+        schema:
+          $ref: '#/definitions/inputs.NewTransfer'
+          type: object
+      responses:
+        "202": {}
+      summary: Transfer Cedar coins
+swagger: "2.0"

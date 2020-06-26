@@ -1,0 +1,262 @@
+{
+  "contracts": {
+    "CedrusToken": {
+      "address": "0xb3F8414EB241C496fafee171aBa6099A7Dc1a012",
+      "constructorCode": "6080604052611f73806100136000396000f3fe",
+      "bodyBytecodeHash": "cf404ca2df1e89ffaf0e33a6e145ffca380a59b6a54e02ed9f1b6f2d36c9fb20",
+      "localBytecodeHash": "b170ceba503abef152207e282d37da9f263bb77b4ab9b190eabaf1b091abedcb",
+      "deployedBytecodeHash": "b170ceba503abef152207e282d37da9f263bb77b4ab9b190eabaf1b091abedcb",
+      "types": {
+        "t_bool": {
+          "id": "t_bool",
+          "kind": "elementary",
+          "label": "bool"
+        },
+        "t_uint256": {
+          "id": "t_uint256",
+          "kind": "elementary",
+          "label": "uint256"
+        },
+        "t_array:50<t_uint256>": {
+          "id": "t_array:50<t_uint256>",
+          "valueType": "t_uint256",
+          "length": "50",
+          "kind": "array",
+          "label": "uint256[50]"
+        },
+        "t_string": {
+          "id": "t_string",
+          "kind": "elementary",
+          "label": "string"
+        },
+        "t_uint8": {
+          "id": "t_uint8",
+          "kind": "elementary",
+          "label": "uint8"
+        },
+        "t_mapping<t_uint256>": {
+          "id": "t_mapping<t_uint256>",
+          "valueType": "t_uint256",
+          "label": "mapping(key => uint256)",
+          "kind": "mapping"
+        },
+        "t_address": {
+          "id": "t_address",
+          "kind": "elementary",
+          "label": "address"
+        },
+        "t_struct<Roles.Role>": {
+          "id": "t_struct<Roles.Role>",
+          "kind": "struct",
+          "label": "Roles.Role",
+          "members": [
+            {
+              "label": "bearer",
+              "astId": 697,
+              "type": "t_mapping<t_bool>",
+              "src": "150:32:4"
+            }
+          ]
+        },
+        "t_mapping<t_bool>": {
+          "id": "t_mapping<t_bool>",
+          "valueType": "t_bool",
+          "label": "mapping(key => bool)",
+          "kind": "mapping"
+        }
+      },
+      "storage": [
+        {
+          "contract": "Initializable",
+          "path": "@openzeppelin/upgrades/contracts/Initializable.sol",
+          "label": "initialized",
+          "astId": 1634,
+          "type": "t_bool",
+          "src": "757:24:10"
+        },
+        {
+          "contract": "Initializable",
+          "path": "@openzeppelin/upgrades/contracts/Initializable.sol",
+          "label": "initializing",
+          "astId": 1636,
+          "type": "t_bool",
+          "src": "876:25:10"
+        },
+        {
+          "contract": "Initializable",
+          "path": "@openzeppelin/upgrades/contracts/Initializable.sol",
+          "label": "______gap",
+          "astId": 1698,
+          "type": "t_array:50<t_uint256>",
+          "src": "1982:29:10"
+        },
+        {
+          "contract": "ERC20Detailed",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol",
+          "label": "_name",
+          "astId": 1504,
+          "type": "t_string",
+          "src": "224:20:8"
+        },
+        {
+          "contract": "ERC20Detailed",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol",
+          "label": "_symbol",
+          "astId": 1506,
+          "type": "t_string",
+          "src": "250:22:8"
+        },
+        {
+          "contract": "ERC20Detailed",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol",
+          "label": "_decimals",
+          "astId": 1508,
+          "type": "t_uint8",
+          "src": "278:23:8"
+        },
+        {
+          "contract": "ERC20Detailed",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol",
+          "label": "______gap",
+          "astId": 1560,
+          "type": "t_array:50<t_uint256>",
+          "src": "1654:29:8"
+        },
+        {
+          "contract": "ERC20",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol",
+          "label": "_balances",
+          "astId": 1101,
+          "type": "t_mapping<t_uint256>",
+          "src": "1418:46:7"
+        },
+        {
+          "contract": "ERC20",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol",
+          "label": "_allowances",
+          "astId": 1107,
+          "type": "t_mapping<t_uint256>",
+          "src": "1471:69:7"
+        },
+        {
+          "contract": "ERC20",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol",
+          "label": "_totalSupply",
+          "astId": 1109,
+          "type": "t_uint256",
+          "src": "1547:28:7"
+        },
+        {
+          "contract": "ERC20",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol",
+          "label": "______gap",
+          "astId": 1493,
+          "type": "t_array:50<t_uint256>",
+          "src": "8172:29:7"
+        },
+        {
+          "contract": "GSNRecipient",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/GSN/GSNRecipient.sol",
+          "label": "_relayHub",
+          "astId": 67,
+          "type": "t_address",
+          "src": "1149:25:1"
+        },
+        {
+          "contract": "WhitelistAdminRole",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/access/roles/WhitelistAdminRole.sol",
+          "label": "_whitelistAdmins",
+          "astId": 794,
+          "type": "t_struct<Roles.Role>",
+          "src": "477:35:5"
+        },
+        {
+          "contract": "WhitelistAdminRole",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/access/roles/WhitelistAdminRole.sol",
+          "label": "______gap",
+          "astId": 894,
+          "type": "t_array:50<t_uint256>",
+          "src": "1503:29:5"
+        },
+        {
+          "contract": "CedrusToken",
+          "path": "contracts/CedrusToken.sol",
+          "label": "minters",
+          "astId": 1736,
+          "type": "t_mapping<t_uint256>",
+          "src": "806:36:11"
+        },
+        {
+          "contract": "CedrusToken",
+          "path": "contracts/CedrusToken.sol",
+          "label": "daiAddress",
+          "astId": 1738,
+          "type": "t_address",
+          "src": "874:25:11"
+        }
+      ],
+      "warnings": {
+        "hasConstructor": false,
+        "hasSelfDestruct": false,
+        "hasDelegateCall": false,
+        "hasInitialValuesInDeclarations": false,
+        "uninitializedBaseContracts": [],
+        "storageUncheckedVars": [
+          {
+            "contract": "WhitelistAdminRole",
+            "path": "@openzeppelin/contracts-ethereum-package/contracts/access/roles/WhitelistAdminRole.sol",
+            "label": "_whitelistAdmins",
+            "astId": 794,
+            "type": "t_struct<Roles.Role>",
+            "src": "477:35:5"
+          }
+        ],
+        "storageDiff": []
+      }
+    }
+  },
+  "solidityLibs": {},
+  "proxies": {
+    "cedar/CedrusToken": [
+      {
+        "address": "0x7621b525dF3A21b97B0A01AcA69790298fe9A700",
+        "version": "1.0.0",
+        "implementation": "0xc95Ce2ED514D5199f47e60F182b5A37449A6e8aB",
+        "admin": "0x8f6D884f11B20464f9c7E2f7d3942fAEd4489dd8",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x393099b560AD5192cb9268535Dc341D31a8658E8",
+        "version": "1.0.0",
+        "implementation": "0xb3F8414EB241C496fafee171aBa6099A7Dc1a012",
+        "admin": "0x8f6D884f11B20464f9c7E2f7d3942fAEd4489dd8",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x7668f640e61F055fEA07Bad0e31df5103E654410",
+        "version": "1.0.0",
+        "implementation": "0xb3F8414EB241C496fafee171aBa6099A7Dc1a012",
+        "admin": "0x8f6D884f11B20464f9c7E2f7d3942fAEd4489dd8",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0xc00731961edFdfFb684c72D72e27DfDE9898c4F0",
+        "version": "1.0.0",
+        "implementation": "0xb3F8414EB241C496fafee171aBa6099A7Dc1a012",
+        "admin": "0x8f6D884f11B20464f9c7E2f7d3942fAEd4489dd8",
+        "kind": "Upgradeable"
+      }
+    ]
+  },
+  "manifestVersion": "2.2",
+  "version": "1.0.0",
+  "dependencies": {
+    "@openzeppelin/contracts-ethereum-package": {
+      "package": "0xa44bb80b290dE8a465d17B14269dF53CF0B9Bf4f",
+      "version": "2.5.0"
+    }
+  },
+  "proxyAdmin": {
+    "address": "0x8f6D884f11B20464f9c7E2f7d3942fAEd4489dd8"
+  }
+}

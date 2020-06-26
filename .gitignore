@@ -1,0 +1,14 @@
+node_modules/
+sendgrid.env
+emailServices.env
+db/*
+bin/*
+dist/
+.idea/
+.env
+.DS_Store
+# OpenZeppelin
+contracts/build
+contracts/.openzeppelin/dev-*.json
+contracts/.openzeppelin/.session
+contracts/.mnemonic.json

@@ -1,0 +1,188 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "For managing claims",
+        "title": "Cedrus service API",
+        "contact": {
+            "name": "API Support",
+            "email": "email@ded.fr"
+        },
+        "license": {},
+        "version": "v1"
+    },
+    "basePath": "/api/v1",
+    "paths": {
+        "/claims": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get all Claims",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.Claim"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create a Claim",
+                "parameters": [
+                    {
+                        "description": "New Claim",
+                        "name": "new-claim",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/inputs.NewClaim"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {},
+                    "400": {}
+                }
+            }
+        },
+        "/claims/{id}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get a Claim",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Claim ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.Claim"
+                        }
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "summary": "get application health",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.Health"
+                        }
+                    }
+                }
+            }
+        },
+        "/transfer": {
+            "post": {
+                "summary": "Transfer Cedar coins",
+                "parameters": [
+                    {
+                        "description": "Transfer",
+                        "name": "transfer",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/inputs.NewTransfer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {}
+                }
+            }
+        }
+    },
+    "definitions": {
+        "inputs.NewClaim": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "treeCount": {
+                    "type": "integer"
+                }
+            }
+        },
+        "inputs.NewTransfer": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "claim-code": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.Claim": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "claimCode": {
+                    "type": "string"
+                },
+                "creationDate": {
+                    "type": "integer"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "emailSent": {
+                    "type": "boolean"
+                },
+                "emailSentDate": {
+                    "type": "integer"
+                },
+                "memo": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "settlementDate": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "transferAddress": {
+                    "type": "string"
+                },
+                "treeCount": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.Health": {
+            "type": "object",
+            "properties": {
+                "connectedToDb": {
+                    "type": "boolean"
+                }
+            }
+        }
+    }
+}
