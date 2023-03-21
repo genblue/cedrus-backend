@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Site made with Mobirise Website Builder v4.10.5, https://mobirise.com -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="generator" content="Mobirise v4.10.5, mobirise.com">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+        <link rel="shortcut icon" href="assets/images/logo-alt-128x128.png" type="image/x-icon">
+        <meta name="description" content="">
+
+        <title>CedarCoin - Check Out</title>
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+        <link rel="stylesheet" href="assets/socicon/css/styles.css">
+        <link rel="stylesheet" href="assets/dropdown/css/style.css">
+        <link rel="stylesheet" href="assets/formstyler/jquery.formstyler.css">
+        <link rel="stylesheet" href="assets/formstyler/jquery.formstyler.theme.css">
+        <link rel="stylesheet" href="assets/datepicker/jquery.datetimepicker.min.css">
+        <link rel="stylesheet" href="assets/theme/css/style.css">
+        <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+
+        <meta charset="UTF-8">
+        <meta name="google" content="notranslate">
+        <meta http-equiv="Content-Language" content="en">
+        <script>
+            document.addEventListener('submit', function (event) {
+                // Stop form from submitting normally
+                event.preventDefault();
+
+                let firstName = document.getElementById("nameFirst-formbuilder-0").value;
+                let lastName = document.getElementById("nameLast-formbuilder-0").value;
+                let email = document.getElementById("email-formbuilder-0").value;
+                let treeCount = document.getElementById("trees-formbuilder-0").value;
+
+                let data = "{" +
+                    "\"name\": \"" + firstName + " " + lastName + "\"," +
+                    "\"email\": \"" + email + "\"," +
+                    "\"treeCount\": " + treeCount +
+                    "}";
+
+                let post = $.ajax({
+                    type: "POST",
+                    url: "api/v1/claims",
+                    data: data
+                });
+
+                $("#form-alert").hide();
+                $("#claim-form").hide();
+                $("#loader").show();
+
+                post.fail(data => {
+                    console.error(data.responseText);
+                    let response = JSON.parse(data.responseText);
+
+                    $("#loader").hide();
+                    $("#form-alert").empty().append("Error: " + response.data).show();
+                    $("#claim-form").show();
+                });
+
+                post.done(_ => {
+                    $("#loader").hide();
+                    $("#form-success").empty().append("Payment submitted. Check your email to claim your Cedars!").show();
+                    $("#form-success2").empty().append("Payment submitted. Check your email to claim your Cedars!").show();
+                });
+            }, false);
+        </script>
+    </head>
+    <body>
+        <section class="menu cid-rwJlWZPeFk" once="menu" id="menu3-8">
+            <nav class="navbar navbar-dropdown navbar-expand-lg">
+                <div class="navbar-brand">
+                    <span class="navbar-caption-wrap"><a class="navbar-caption text-primary display-7" href="index.html">
+                            Reference Design</a></span>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+                        <li class="nav-item">
+                            <a class="nav-link link text-white display-4" href="https://mobirise.com">
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link text-white display-4" href="https://mobirise.com">
+                                Services
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link text-white display-4" href="https://mobirise.com">
+                                About Us
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </section>
+
+        
+        <section class="image1 cid-rwxAy07da6" id="image1-6">
+            <!-- Block parameters controls (Blue "Gear" panel) -->
+
+            <!-- End block parameters -->
+            <figure class="mbr-figure container-fluid">
+                <div class="image-block" style="width: 20%;">
+                    <a href="index.html"><img src="assets/images/logo2x.svg" alt="" title=""></a>
+                </div>
+            </figure>
+        </section>
+
+        <section class="form cid-rwxtvp3iUZ" id="formbuilder-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
+                        <div style="display:none" id="form-success" class="alert alert-success col-12"></div>
+                        <div style="display:none" id="form-alert" class="alert alert-danger col-12"></div>
+                        <!--Formbuilder Form-->
+                        <div class="loader" style="display:none" id="loader"></div>
+                        <form action="#" method="POST" class="mbr-form form-with-styler"
+                              data-form-title="cedarcoin_donation">
+                            <div class="dragArea form-row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <h2 class="mbr-fonts-style display-5">PERSONAL INFORMATION*</h2>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <input type="text" name="nameFirst" placeholder="First Name"
+                                                   data-form-field="nameFirst" class="form-control text-multiple" value=""
+                                                   required="required" id="nameFirst-formbuilder-0">
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" name="nameLast" placeholder="Last Name"
+                                                   data-form-field="nameLast" class="form-control text-multiple" value=""
+                                                   required="required" id="nameLast-formbuilder-0">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-for="email" class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                    <input type="email" name="email" placeholder="test@email.com" data-form-field="email"
+                                           class="form-control display-7" required="required" value="" id="email-formbuilder-0">
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <h2 class="mbr-fonts-style display-5">NUMBER OF TREES* (restricted to 1 for reference design)</h2>
+                                </div>
+                                <div data-for="trees" class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                    <input type="number" name="trees" placeholder="1" data-form-field="trees" readonly="readonly"
+                                           class="form-control display-7" required="required" value="1" id="trees-formbuilder-0">
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <h2 class="mbr-fonts-style display-5">PAYMENT METHOD</h2>
+                                </div>
+                                <div data-for="Mastercard" class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                    <div class="form-control-label">
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" value="Yes" name="Visa" data-form-field="MASTERCARD"
+                                               class="form-check-input display-7" id="Visa-formbuilder-0">
+                                        <label class="form-check-label display-7">Visa</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" value="Yes" name="Mastercard" data-form-field="MASTERCARD"
+                                               class="form-check-input display-7" id="Mastercard-formbuilder-0">
+                                        <label class="form-check-label display-7">Mastercard</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <hr>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <h2 class="mbr-fonts-style display-5">CREDIT CARD DETAILS</h2>
+                                </div>
+                                <div data-for="name" class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                    <label for="name-formbuilder-0" class="form-control-label mbr-fonts-style display-7">Name on
+                                        Card</label>
+                                    <input type="text" name="name" placeholder="Name" data-form-field="name"
+                                           class="form-control display-7" value="" id="name-formbuilder-0">
+                                </div>
+                                <div data-for="number" class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                    <label for="number-formbuilder-0" class="form-control-label mbr-fonts-style display-7">Credit
+                                        Card Number</label>
+                                    <input type="number" name="number" placeholder="Number" max="100" min="0" step="1"
+                                           data-form-field="number" class="form-control display-7" value=""
+                                           id="number-formbuilder-0">
+                                </div>
+                                <div data-for="expiration" class="col-lg-6 col-md-12 col-sm-12 form-group">
+                                    <label for="expiration-formbuilder-0" class="form-control-label mbr-fonts-style display-7">Expiration
+                                        Date</label>
+                                    <input type="text" name="expiration" placeholder="01/2019" data-form-field="text"
+                                           class="form-control display-7" value=""
+                                           id="expiration-formbuilder-0">
+                                </div>
+                                <div data-for="cvv" class="col-lg-6 col-md-12 col-sm-12 form-group">
+                                    <label for="cvv-formbuilder-0"
+                                           class="form-control-label mbr-fonts-style display-7">CVV</label>
+                                    <input type="number" name="cvv" placeholder="Number" max="999" min="0" step="1"
+                                           data-form-field="number1" class="form-control display-7" value=""
+                                           id="cvv-formbuilder-0">
+                                </div>
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-secondary display-7">Submit</button>
+                                </div>
+                            </div>
+                        </form><!--Formbuilder Form-->
+                        <div style="display:none" id="form-success2" class="alert alert-success col-12"></div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section once="footers" class="cid-rwJik9Jrbh" id="footer1-7">
+            <div class="container">
+                <div class="media-container-row align-center justify-content-center align-items-center">
+                    <div class="section-text m-2">
+                        <p class="mbr-text mbr-black mb-0 mbr-fonts-style display-7">© 2019 All Rights Reserved</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <script src="assets/web/assets/jquery/jquery.min.js"></script>
+        <script src="assets/popper/popper.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/smoothscroll/smooth-scroll.js"></script>
+        <script src="assets/dropdown/js/nav-dropdown.js"></script>
+        <script src="assets/dropdown/js/navbar-dropdown.js"></script>
+        <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
+        <script src="assets/formstyler/jquery.formstyler.js"></script>
+        <script src="assets/formstyler/jquery.formstyler.min.js"></script>
+        <script src="assets/datepicker/jquery.datetimepicker.full.js"></script>
+        <script src="assets/theme/js/script.js"></script>
+        <script src="assets/formoid/formoid.min.js"></script>
+    </body>
+</html>
